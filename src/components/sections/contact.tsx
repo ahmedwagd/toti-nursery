@@ -1,28 +1,34 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useEffect, useRef, useState } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const formRef = useRef<HTMLDivElement>(null)
-  const infoRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: "",
-  })
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -36,7 +42,7 @@ export default function Contact() {
           end: "top 50%",
           scrub: 1,
         },
-      })
+      });
 
       gsap.from(formRef.current, {
         x: -50,
@@ -48,7 +54,7 @@ export default function Contact() {
           end: "top 40%",
           scrub: 1,
         },
-      })
+      });
 
       gsap.from(infoRef.current, {
         x: 50,
@@ -60,36 +66,44 @@ export default function Contact() {
           end: "top 40%",
           scrub: 1,
         },
-      })
-    }, sectionRef)
+      });
+    }, sectionRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
+    e.preventDefault();
+    console.log("Form submitted:", formData);
     // Handle form submission
-  }
+  };
 
-  const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputFocus = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     gsap.to(e.target, {
       scale: 1.02,
       duration: 0.3,
       ease: "power2.out",
-    })
-  }
+    });
+  };
 
-  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     gsap.to(e.target, {
       scale: 1,
       duration: 0.3,
       ease: "power2.out",
-    })
-  }
+    });
+  };
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 px-4 bg-gradient-to-b from-[#CDB4DB] to-[#FFD6BA]">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-24 px-4 bg-gradient-to-b from-[#CDB4DB] to-[#FFD6BA]"
+    >
       <div className="max-w-6xl mx-auto">
         <h2
           ref={titleRef}
@@ -105,7 +119,7 @@ export default function Contact() {
                   Schedule a Visit
                 </CardTitle>
                 <CardDescription className="text-[#6a5a7a] text-base">
-                  We'd love to show you around and answer any questions!
+                  We&apos;d love to show you around and answer any questions!
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -114,7 +128,9 @@ export default function Contact() {
                     <Input
                       placeholder="Your Name"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       onFocus={handleInputFocus}
                       onBlur={handleInputBlur}
                       className="rounded-2xl border-2 border-[#CDB4DB]/30 focus:border-[#CDB4DB] transition-colors"
@@ -125,7 +141,9 @@ export default function Contact() {
                       type="email"
                       placeholder="Your Email"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       onFocus={handleInputFocus}
                       onBlur={handleInputBlur}
                       className="rounded-2xl border-2 border-[#CDB4DB]/30 focus:border-[#CDB4DB] transition-colors"
@@ -136,7 +154,9 @@ export default function Contact() {
                       type="tel"
                       placeholder="Your Phone"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
                       onFocus={handleInputFocus}
                       onBlur={handleInputBlur}
                       className="rounded-2xl border-2 border-[#CDB4DB]/30 focus:border-[#CDB4DB] transition-colors"
@@ -146,7 +166,9 @@ export default function Contact() {
                     <Textarea
                       placeholder="Tell us about your child and any questions you have..."
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       onFocus={handleInputFocus}
                       onBlur={handleInputBlur}
                       className="rounded-2xl border-2 border-[#CDB4DB]/30 focus:border-[#CDB4DB] transition-colors min-h-32"
@@ -217,5 +239,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

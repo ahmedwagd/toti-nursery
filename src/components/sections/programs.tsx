@@ -1,17 +1,24 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const programs = [
   {
     title: "Tiny Tots",
     age: "6 months - 2 years",
-    description: "Gentle care and sensory exploration for our youngest learners.",
+    description:
+      "Gentle care and sensory exploration for our youngest learners.",
     color: "#FFD6BA",
     emoji: "👶",
   },
@@ -32,16 +39,17 @@ const programs = [
   {
     title: "Ready for School",
     age: "4 - 5 years",
-    description: "Pre-literacy, numeracy, and independence skills for kindergarten.",
+    description:
+      "Pre-literacy, numeracy, and independence skills for kindergarten.",
     color: "#FFE066",
     emoji: "📚",
   },
-]
+];
 
 export default function Programs() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,9 +63,9 @@ export default function Programs() {
           end: "top 50%",
           scrub: 1,
         },
-      })
+      });
 
-      cardsRef.current.forEach((card, index) => {
+      cardsRef.current.forEach((card) => {
         if (card) {
           gsap.from(card, {
             y: 100,
@@ -70,16 +78,20 @@ export default function Programs() {
               end: "top 60%",
               scrub: 1,
             },
-          })
+          });
         }
-      })
-    }, sectionRef)
+      });
+    }, sectionRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="programs" ref={sectionRef} className="py-24 px-4 bg-gradient-to-b from-[#B8F2E6] to-[#A0E7E5]">
+    <section
+      id="programs"
+      ref={sectionRef}
+      className="py-24 px-4 bg-gradient-to-b from-[#B8F2E6] to-[#A0E7E5]"
+    >
       <div className="max-w-6xl mx-auto">
         <h2
           ref={titleRef}
@@ -92,7 +104,7 @@ export default function Programs() {
             <div
               key={program.title}
               ref={(el) => {
-                cardsRef.current[index] = el
+                cardsRef.current[index] = el;
               }}
               className="group"
             >
@@ -107,10 +119,14 @@ export default function Programs() {
                   <CardTitle className="font-[family-name:var(--font-poppins)] text-2xl text-[#5a4a6a] mb-2">
                     {program.title}
                   </CardTitle>
-                  <CardDescription className="text-[#6a5a7a] font-semibold text-base">{program.age}</CardDescription>
+                  <CardDescription className="text-[#6a5a7a] font-semibold text-base">
+                    {program.age}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-[#6a5a7a] text-center leading-relaxed">{program.description}</p>
+                  <p className="text-[#6a5a7a] text-center leading-relaxed">
+                    {program.description}
+                  </p>
                 </CardContent>
               </Card>
             </div>
@@ -118,5 +134,5 @@ export default function Programs() {
         </div>
       </div>
     </section>
-  )
+  );
 }
